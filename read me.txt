@@ -1,0 +1,3 @@
+Ce document explique ce qui a été fait dans le projet et comment l'utiliser.
+
+J'ai créer ?? serveurs et un client, chacun a une connection pré-définie dans leurs codes
