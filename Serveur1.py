@@ -7,7 +7,7 @@ import re
 import os
 
 os.system("color 0f")
-print(" " * 21 + "***** Serveur Elranet, bienvenue. *****\n\n\n" + " " * 21)
+print(" " * 21 + "***** Serveur 1, bienvenue. *****\n\n\n" + " " * 21)
 try:
     hote = socket.gethostbyname(socket.gethostname())
 except NameError as nom_err:

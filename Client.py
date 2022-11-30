@@ -1,37 +1,35 @@
-# -*-coding: utf8-*
-
 from threading import Thread
 import platform as p
 import socket
-import time
-import sys
 import re
 import os
 
 os.system("color 0f")
 
 id_co_individuel = 0
-msg_a_envoyer = ""
-ligne_a_ajouter = ""
-msg_a_encoder = ""
+msg_envoi = ""
+ligne_ajout = ""
+msg_encode = ""
 
 
 def async_recv(client_socket):
-    while 1:
+    while msg_recu != "kill":
         msg_recu = client_socket.recv(1024)
-        if msg_recu == b"":
-            client_socket.close()
-            print("Le serveur est arrêté.\n")
-            break
-        if msg_recu != msg_a_encoder:
-            msg_recu = msg_recu.decode()
-            if re.search(r'^id_', msg_recu) is None:
-                print("\n>>>{0}".format(msg_recu))
-            else:
-                id_co_individuel = int(re.sub(r'(id_)', r'', msg_recu))
-        elif msg_a_encoder == msg_recu:
-            msg_recu = msg_recu.decode()
-            print("\n>>>Envoyé : {0}".format(msg_recu))
+        while msg_recu != "kill" and msg_recu != "reset":
+
+            if msg_recu == b"":
+                client_socket.close()
+                print("Le serveur est arrêté.\n")
+                break
+            if msg_recu != msg_encode:
+                msg_recu = msg_recu.decode()
+                if re.search(r'^id_', msg_recu) is None:
+                    print("\n>>>{0}".format(msg_recu))
+                else:
+                    id_co_individuel = int(re.sub(r'(id_)', r'', msg_recu))
+            elif msg_encode == msg_recu:
+                msg_recu = msg_recu.decode()
+                print("\n>>>Envoyé : {0}".format(msg_recu))
 
 
 def envoie(msg_a_envoyer):
@@ -45,7 +43,7 @@ def envoie(msg_a_envoyer):
     print("Attente de la réponse . . .")
 
 
-print(" " * 20 + "****** Client Elranet, bienvenue. ******\n\n\n" + " " * 20)
+print(" " * 20 + "****** Client, bienvenue. ******\n\n\n" + " " * 20)
 hote = input(" " * 21 + "Entrez le nom de l'hôte > ")
 port = int(input(" " * 21 + "Entrez le port (50000 par défault) > "))
 print("\n")
@@ -75,36 +73,36 @@ thread.start()
 
 print("Connexion établie avec le serveur sur le port {}.".format(port))
 
-while msg_a_envoyer.lower() != "fin":
+while msg_envoi.lower() != "fin":
     try:
         # partie du code où on va écrire un message pour le client
         while 1:
-            ligne_a_ajouter = input("> ")
-            if ligne_a_ajouter == "send":  # la commande 'fin' demande l'arrêt du serveur
+            ligne_ajout = input("> ")
+            if ligne_ajout == "send":  # la commande 'fin' demande l'arrêt du serveur
                 break
-            elif ligne_a_ajouter.lower() == "fin":
+            elif ligne_ajout.lower() == "fin":
                 # on arrete tout :
                 break
-            elif ligne_a_ajouter == "ren":
-                msg_a_envoyer += "\n"
-                msg_a_envoyer += ligne_a_ajouter
-                envoie(msg_a_envoyer)
-            elif ligne_a_ajouter == "id":
-                msg_a_envoyer += "\n"
-                msg_a_envoyer += ligne_a_ajouter
-                envoie(msg_a_envoyer)
+            elif ligne_ajout == "ren":
+                msg_envoi += "\n"
+                msg_envoi += ligne_ajout
+                envoie(msg_envoi)
+            elif ligne_ajout == "id":
+                msg_envoi += "\n"
+                msg_envoi += ligne_ajout
+                envoie(msg_envoi)
             else:
-                msg_a_envoyer += "\n"
-                msg_a_envoyer += ligne_a_ajouter
+                msg_envoi += "\n"
+                msg_envoi += ligne_ajout
 
-        if msg_a_envoyer != "" and ligne_a_ajouter.lower() != "fin" and ligne_a_ajouter != "ren":
+        if msg_envoi != "" and ligne_ajout.lower() != "fin" and ligne_ajout != "ren":
             # on envoie
-            envoie(msg_a_envoyer)
+            envoie(msg_envoi)
         # --------------------------------------------------------
-        elif ligne_a_ajouter.lower() == "fin":
-            msg_a_envoyer = "fin"
-            msg_a_encoder = msg_a_envoyer.encode()
-            connexion_avec_serveur.send(msg_a_encoder)
+        elif ligne_ajout.lower() == "fin":
+            msg_envoi = "fin"
+            msg_encode = msg_envoi.encode()
+            connexion_avec_serveur.send(msg_encode)
             break
         # --------------------------------------------------------
     except NameError as nom_erreur:
