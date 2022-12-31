@@ -167,19 +167,28 @@ class MainWindow(QMainWindow):
     @staticmethod
     def action2():
         QMessageBox(
-            text="ddddddddddddddddddddddddddddddddddddddddddddddd"
-        ).exec()
+            text="Dans le menu déroulant 'Commande exécutables', vous pouvez choisir une commande générique, "
+                 "une commande powershell ou une commande propre à un système d'exploitation.\n"
+                 "Un nouveau menu déroulant va s' ouvrir dans le cas où vous choisissez l' une des deux dernières "
+                 "options.\nVous aurez également la possibilité d' entrer une commande non présente dans le menu en "
+                 "choisissant 'Autre commande', un champ va apparaitre où vous pourrez écrire votre commande.\n \n "
+                 "            ************ Attention *************\n"
+                 "Une commande propre à un système d'exploitation ne peut pas être exécutée sur une machine n'ayant "
+                 "pas ce système d'exploitation.").exec()
 
     @staticmethod
     def action3():
         QMessageBox(
-            text="ddddddddddddddddddddddddddddddddddddddddddddddd"
+            text="dddddddddddddddddddddddddddddactiondddddddddddddddddd"
         ).exec()
 
     @staticmethod
     def action4():
         QMessageBox(
-            text="ddddddddddddddddddddddddddddddddddddddddddddddd"
+            text="L'importation et l'exportation de CSV est possible.\n Cette option est possible dans l'onglet"
+                 " 'CSV'.\n\nLe CSV importé doit comporter les informations de connexion au/aux serveur(s)"
+                 " dont vous voulez prendre la mains."
+
         ).exec()
 
     def __explorateur(self):

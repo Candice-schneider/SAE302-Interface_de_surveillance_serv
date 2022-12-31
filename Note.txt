@@ -10,7 +10,6 @@ Difficulté choisi au départ: moyenne
 A faire:
 * créer un dictionnaire avec tous les addresses ip des serveurs
 * créer des machines virtuelles
-* créer des connexions avec les machines virtuelles (synchrone)
 * pouvoir lancer une commande à distance
 * créer la documentation utilisateur
 * créer la documentation administrateur
