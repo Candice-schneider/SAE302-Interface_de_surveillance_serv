@@ -1,6 +1,8 @@
+import socket
+import sys
+import threading
+
 from PyQt5.QtWidgets import *
-from Cli import Client
-import sys, socket, threading
 
 
 class MainWindow(QMainWindow):
@@ -15,7 +17,7 @@ class MainWindow(QMainWindow):
 
         widget = QWidget()
         self.setCentralWidget(widget)
-        self.setWindowTitle('testing')
+        self.setWindowTitle('Gestion à distance de serveurs')
 
         grid = QGridLayout()
         widget.setLayout(grid)
@@ -103,7 +105,6 @@ class MainWindow(QMainWindow):
         connect.clicked.connect(self.__conect)
 
         self.text = text
-
 
     def __conect(self) -> int:
         try:
