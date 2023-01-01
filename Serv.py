@@ -1,4 +1,6 @@
 import socket
+import psutil
+import sys
 
 
 def serveur():
@@ -27,19 +29,29 @@ def serveur():
                 while msg != "kill" and msg != "reset" and msg != "disconnect":
                     msg = conn.recv(1024).decode()
                     print("Received from client: ", msg)
-                    # msg = input('Enter a message to send: ')
-                    """ 
-                    le serveur va ici récupère les commandes du client et lui renvoyer. Dans la suite de la SAÉ, 
-                    le serveur fait pareil mais en renvoyant le résultat des commandes demandées par le client.
-                    """
+                    # Commandes du serveur
+                    if msg == "cpu":
+                        msg = 'cpu : ' + str(psutil.cpu_percent())
+                    elif msg == "os":
+                        msg = 'os : ' + str(sys.platform)
+                    elif msg == "memory":
+                        msg = 'memory : ' + str(psutil.virtual_memory().total)
+                    elif msg == "ram":
+                        msg = 'ram : ' + str(psutil.disk_usage('/'))
+                    elif msg == "ip":
+                        msg = 'ip : ' + socket.gethostbyname(socket.gethostname())
+                    elif msg == "name":
+                        msg = 'name : ' + socket.gethostname()
+                    elif msg == "python":
+                        msg = 'python : ' + str(sys.version)
+                    elif msg != "kill" and msg != "reset" and msg != "disconnect":
+                        msg = "Commande inconnue"
                     conn.send(msg.encode())
                 conn.close()
         print("Connection closed")
         server_socket.close()
         print("Server closed")
 
-
-# Coder les commande ici
 
 if __name__ == '__main__':
     serveur()

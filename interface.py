@@ -7,7 +7,7 @@
 """
 import sys
 from PyQt5.QtWidgets import *
-
+from Cli import Client
 
 class MainWindow(QMainWindow):
     def __init__(self):
