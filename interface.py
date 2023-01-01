@@ -7,7 +7,6 @@
 """
 import sys
 from PyQt5.QtWidgets import *
-from Cli import Client
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -15,7 +14,7 @@ class MainWindow(QMainWindow):
 
         widget = QWidget()
         self.setCentralWidget(widget)
-        self.resize(800, 255)
+        self.resize(800, 300)
         self.__createMenuBar()
 
         grid = QGridLayout()
