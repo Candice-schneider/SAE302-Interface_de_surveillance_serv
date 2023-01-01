@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from Cli import Client
 import sys, socket, threading
 
 
@@ -14,7 +15,7 @@ class MainWindow(QMainWindow):
 
         widget = QWidget()
         self.setCentralWidget(widget)
-        self.setWindowTitle('Gestion à distance de serveurs')
+        self.setWindowTitle('testing')
 
         grid = QGridLayout()
         widget.setLayout(grid)
