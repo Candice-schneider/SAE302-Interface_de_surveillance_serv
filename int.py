@@ -223,7 +223,7 @@ class MainWindow(QMainWindow):
     @staticmethod
     def action3():
         QMessageBox(
-            text="dddddddddddddddddddddddddddddactiondddddddddddddddddd"
+            text="Le retour de la commande se fait sous les boutons qui permettent de sélectionner une action sur une machine."
         ).exec()
 
     @staticmethod
